@@ -126,7 +126,7 @@ namespace mongodb
         static void Main(string[] args)
         {
             // création du client
-            DB dataStorage = new DB("mongodb+srv://MortallicaXxX:PtW143kjkS3F@cluster0.xgpkc.mongodb.net/EXPREDITOR?retryWrites=true&w=majority", "faceid", "test");
+            DB dataStorage = new DB("mongodb+srv://<user>:<mdp>@cluster0.xgpkc.mongodb.net/EXPREDITOR?retryWrites=true&w=majority", "faceid", "test");
 
             
             // exemple querry find()
@@ -139,22 +139,21 @@ namespace mongodb
             }
 
             // exemple querry insert()
-            /*            dynamic insert = new ExpandoObject();
-                        insert.name = "premierTest";
-                        insert.session = new ExpandoObject();
-                        dataStorage.Insert(insert);*/
+            dynamic insert = new ExpandoObject();
+            insert.name = "premierTest";
+            dataStorage.Insert(insert);
 
             // exemple querry update()
-            /*            FilterDefinition<BsonDocument> filterDefinition = Builders<BsonDocument>.Filter.Eq("name", "premierTest");
-                        UpdateDefinition<BsonDocument> update = Builders<BsonDocument>.Update.Set("name", "loool");
-                        results = dataStorage.UpdateOne(filterDefinition, update);
-                        Console.WriteLine(results);*/
+            FilterDefinition<BsonDocument> filterDefinition = Builders<BsonDocument>.Filter.Eq("name", "premierTest");
+            UpdateDefinition<BsonDocument> update = Builders<BsonDocument>.Update.Set("name", "loool");
+            results = dataStorage.UpdateOne(filterDefinition, update);
+            Console.WriteLine(results);
 
             // exemple querry delete()
 
-            /*            var delete = Builders<BsonDocument>.Filter.Eq("name", "loool");
-                        results = dataStorage.Delete(delete);
-                        Console.WriteLine(results);*/
+            var delete = Builders<BsonDocument>.Filter.Eq("name", "loool");
+            results = dataStorage.Delete(delete);
+            Console.WriteLine(results);
 
             /*Console.WriteLine(dataStorage.CollectionsNames());*/
 
